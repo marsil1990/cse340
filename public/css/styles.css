@@ -5,253 +5,311 @@
   box-sizing: border-box;
 }
 
-  header, main, footer{
-    margin: 1rem;
-  }
+header,
+main,
+footer {
+  margin: 1rem;
+}
 
-  .siteName a{
-    text-decoration: none;
-    font-size: 30px;
-    color: black;
-  }
+.siteName a {
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+}
 
-  #tools{
-    margin-top: 7px;
-  }
-  #tools a{
-    text-decoration: none;
-    font-size: 20px;
-    color: black;
-  }
+#tools {
+  margin-top: 7px;
+}
+#tools a {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
 
-  header{
-    display: flex;
-    justify-content: space-between;
-  }
+header {
+  display: flex;
+  justify-content: space-between;
+}
 
-  nav{
-    background-color: black;
-    padding: 0;
-    margin: 0 1rem;
-    height: 2rem;
-  }
+nav {
+  background-color: black;
+  padding: 0;
+  margin: 0 1rem;
+  height: 2rem;
+}
 
-  nav ul{
-    padding-top: 5px;
-    padding-left: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: white;
-    list-style: none;
-    font-size: 15px;
-  }
+nav ul {
+  padding-top: 5px;
+  padding-left: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  font-size: 15px;
+}
 
+nav ul a {
+  text-decoration: none;
+  color: white;
+}
 
+.body-div {
+  background-color: white;
+  margin: 2rem auto;
+}
 
-  .body-div{
-    background-color: white;
-    margin: 2rem auto;
-  }
+.sections {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.main-content {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  margin-bottom: 3rem;
+}
+.main-content h2 {
+  color: rgb(4, 4, 70);
+  font-weight: bolder;
+}
 
-  .sections{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-  }
-  .main-content{
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
-    margin-bottom: 3rem;
-  }
-  .main-content h2{
-    color: rgb(4, 4, 70);
-    font-weight: bolder;
-  }
+.main-content > img {
+  position: absolute;
+  display: block;
+  justify-self: center;
+  width: 400px;
+}
 
-  .main-content > img{
-    position: absolute;
-    display: block;
-    justify-self: center;
-    width: 400px;
-  }
-    
-  .main-content div{
-    position: relative;
-    width: 200px;
-    background-color: rgba(255, 255, 255, 0.7);
-  }
+.main-content div {
+  position: relative;
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
 
-  .main-content div img{
-    width: 150px;
-    height: auto;
-  }
+.main-content div img {
+  width: 150px;
+  height: auto;
+}
 
-  .main-content div ul{
-    list-style: none;
-    color:rgb(4, 4, 70); ;
-    font-weight: bolder;
-    margin-left: 0;
-    padding: 0;
-  }
+.main-content div ul {
+  list-style: none;
+  color: rgb(4, 4, 70);
+  font-weight: bolder;
+  margin-left: 0;
+  padding: 0;
+}
 
-  .main-content div ul li{
-    font-size: 20px;
-  }
+.main-content div ul li {
+  font-size: 20px;
+}
 
-  .upgrades{
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.1rem;
-  }
+.upgrades {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.1rem;
+}
 
-  .upgrades h2{
-    width: 100%;
-    
-  }
+.upgrades h2 {
+  width: 100%;
+}
 
-  .upgrades .figure .images{
-    background-color: skyblue;
-    width: 160px;
-    height: 100px;
-    padding-top: 0.2rem;
-    border: 1px solid darkblue;
+.upgrades .figure .images {
+  background-color: skyblue;
+  width: 160px;
+  height: 100px;
+  padding-top: 0.2rem;
+  border: 1px solid darkblue;
+}
 
-  }
+.upgrades .figcaption p {
+  text-align: center;
+  color: rgb(4, 4, 70);
+  text-decoration-line: underline;
+  font-size: 18px;
+}
 
-  .upgrades .figcaption p {
-    text-align: center;
-    color: rgb(4, 4, 70);
-    text-decoration-line: underline;
-    font-size: 18px;
-    
-  }
+.upgrades .figure .images img {
+  display: block;
+  justify-self: center;
+  margin: 0;
+  width: 70px;
+  height: auto;
+}
 
-  .upgrades .figure .images img{
-    
-    display: block;
-    justify-self: center;
-    margin: 0;
-    width: 70px;
-    height: auto;
-  }
+.reviews {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
 
-  .reviews{
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-  }
+.reviews ul {
+  padding-left: 15px;
+}
 
-  .reviews ul{
-    padding-left: 15px;
-  }
+.reviews ul li {
+  padding: 15px;
+  font-size: 22px;
+}
 
-  .reviews ul li{
-    padding: 15px;
-    font-size: 22px;
-  }
+/*Custom
+Sedan
+Sport
+SUV
+Truck*/
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  list-style: none;
+}
+#inv-display li {
+  background-color: rgb(178, 225, 244);
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 235px;
+  height: 180px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+#inv-display li a {
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+}
+
+#inv-display li a img {
+  display: block;
+  margin: 3px auto;
+  width: auto;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.namePrice h2 {
+  margin: 5px 5px;
+}
+
+.namePrice span {
+  margin: 1px 5px;
+}
+
+/* SPECIFIC VEHICLE */
+.specific-vehicle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vehicle-details ul {
+  list-style: none;
+}
+
+.vehicle-details h3 {
+  margin-left: 1rem;
+}
+
+.vehicle-details ul li:nth-child(odd) {
+  background-color: rgb(239, 236, 236);
+}
+.specific-vehicle .vehicle-details ul li {
+  margin: 0.5rem 0;
+  padding: 5px 0;
+}
 
 /* LARGER */
-@media only screen and (min-width: 874px){
-    body{
+@media only screen and (min-width: 874px) {
+  body {
     background-image: url("/images/site/small_check.jpg");
   }
 
-  header, main, footer{
+  header,
+  main,
+  footer {
     margin: 1.5rem;
   }
 
-  .siteName a{
+  .siteName a {
     text-decoration: none;
     font-size: 30px;
     color: black;
   }
-  #tools a{
+  #tools a {
     text-decoration: none;
     font-size: 20px;
     color: black;
   }
 
-  header{
+  header {
     display: flex;
     justify-content: space-between;
   }
 
-  nav{
+  nav {
     background-color: black;
     padding: 0;
     margin: 0 1rem;
     height: 2rem;
   }
 
-  nav ul{
-    padding-top: 5px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: white;
-    list-style: none;
+  nav ul {
     font-size: 20px;
   }
 
-
-
-  .body-div{
+  .body-div {
     background-color: white;
     margin: 2rem auto;
-    max-width: 1000px ;
-  border: 5px solid skyblue;
-  border-radius: 5px;
+    max-width: 1000px;
+    border: 5px solid skyblue;
+    border-radius: 5px;
   }
 
-  .sections{
+  .sections {
     max-height: 1000px;
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     grid-template-rows: 1fr 1.2fr;
   }
-  .main-content{
+  .main-content {
     grid-column: 1 / 3;
     grid-row: 1 / 2;
     height: 300px;
   }
-  
 
-  .main-content > img{
+  .main-content > img {
     position: absolute;
     display: block;
     justify-self: center;
     width: 550px;
     height: auto;
   }
-    
-  .main-content div{
+
+  .main-content div {
     position: relative;
     width: 200px;
     margin-left: 80px;
     background-color: rgba(255, 255, 255, 0.7);
   }
 
-  .main-content div img{
-    
+  .main-content div img {
     width: 150px;
     height: auto;
   }
 
-  .main-content div ul{
+  .main-content div ul {
     list-style: none;
     margin-left: 0;
     padding: 0;
   }
 
-  .main-content div ul li{
+  .main-content div ul li {
     font-size: 20px;
   }
 
-  .upgrades{
+  .upgrades {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     display: flex;
@@ -260,11 +318,11 @@
     gap: 1.5rem;
   }
 
-  .upgrades h2{
+  .upgrades h2 {
     width: 100%;
   }
 
-  .upgrades .figure .images{
+  .upgrades .figure .images {
     background-color: skyblue;
     width: 200px;
     height: 100px;
@@ -278,18 +336,16 @@
     color: rgb(4, 4, 70);
     text-decoration-line: underline;
     margin-top: 0;
-    
   }
 
-  .upgrades .figure .images img{
-    
+  .upgrades .figure .images img {
     display: block;
     justify-self: center;
     width: 70px;
     height: auto;
   }
 
-  .reviews{
+  .reviews {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     max-width: 400px;
@@ -297,12 +353,26 @@
     margin-left: 0;
   }
 
-  .reviews ul{
+  .reviews ul {
     padding-left: 15px;
   }
 
-  .reviews ul li{
+  .reviews ul li {
     padding: 15px;
     font-size: 22px;
+  }
+
+  /* SPECIFIC VEHICLE */
+  .specific-vehicle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .specific-vehicle .vehicle-img {
+    grid-column: 1 / 2;
+  }
+
+  .specific-vehicle .vehicle-details {
+    grid-column: 2 / 3;
   }
 }
