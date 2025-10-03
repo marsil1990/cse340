@@ -118,6 +118,87 @@ Util.buildByInventoryGrid = async function (data) {
   return grid;
 };
 
+Util.buildFormLogin = async function () {
+  let form = "";
+
+  form += '<section class="login-container">';
+  form += '  <form class="login-form" action="/account/login" method="POST">';
+
+  // Email
+  form += '    <label for="email">Email:</label>';
+  form += '    <input type="email" id="email" name="account_email" required>';
+
+  // Password
+  form += '    <label for="password">Password:</label>';
+  form +=
+    '    <input type="password" id="password" name="account_password" required>';
+
+  // Botón
+  form += '    <button type="submit">LOGIN</button>';
+
+  // Link de sign-up
+  form +=
+    '    <p class="signup-text">No account? <a href="/account/register">Sign-up</a></p>';
+
+  form += "  </form>";
+  form += "</section>";
+
+  return form;
+};
+
+// Util.buildFormRegister = async function () {
+//   let form = "";
+
+//   form += '<section class="login-container">';
+//   form +=
+//     '  <form class="login-form" action="/account/register" method="POST">';
+
+//   // Email
+//   form += '    <label for="firstName">First Name:</label>';
+//   form +=
+//     '    <input type="text" id="firstName" name="account_firstname" required>';
+
+//   // Password
+//   form += '    <label for="lastName">Last Name:</label>';
+//   form +=
+//     '    <input type="text" id="lastName" name="account_lastname" required>';
+//   form += '    <label for="email">Email:</label>';
+//   form += '    <input type="email" id="email" name="account_email" required>';
+//   form += '    <label for="password">Password:</label>';
+//   form +=
+//     '    <input type="password" id="password" name="account_password" required>';
+//   form +=
+//     '    <p class="password-hint">' +
+//     "Password must be at least 12 characters, contain one uppercase letter, one number, and one special character." +
+//     "</p>";
+//   // Botón
+//   form += '    <button type="submit">Register</button>';
+
+//   form += "  </form>";
+//   form += "</section>";
+
+//   return form;
+// };
+
+Util.buildClassificationList = async function (classification_id = null) {
+  const data = await invModel.getClassifications();
+  let classificationList =
+    '<select name="classification_id" id="classificationList" required>';
+  classificationList += "<option value=''>Choose a Classification</option>";
+  data.rows.forEach((row) => {
+    classificationList += `<option value="${row.classification_id}"`;
+    if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      classificationList += " selected";
+    }
+    classificationList += `>${row.classification_name}</option>`;
+  });
+  classificationList += "</select>";
+  return classificationList;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

@@ -220,6 +220,106 @@ Truck*/
   padding: 5px 0;
 }
 
+/* Flash */
+
+.notice {
+  color: red;
+  text-align: center;
+  list-style: none;
+}
+
+/*FORM*/
+.login-container {
+  display: flex;
+  justify-content: center;
+  /* max-height: 600px; */
+}
+
+.login-form {
+  background-color: #22364d; /* color azul oscuro */
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  width: 300px;
+}
+
+.login-form label {
+  display: block;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+textarea {
+  width: 100%;
+  height: 80px;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+#classificationList {
+  width: 100%;
+
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+.login-form button {
+  background-color: white;
+  color: #22364d;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.login-form button:hover {
+  background-color: #ddd;
+}
+
+.signup-text {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.signup-text a {
+  color: white;
+  text-decoration: underline;
+}
+
+input:required:invalid,
+input:focus:invalid {
+  border-left: 5px solid red;
+}
+
+input:required:valid {
+  /* insert your own styles for valid form input */
+  border-left: 5px solid green;
+}
+
+/*Management new classification and new inventory  */
+.new-classification-inventory a {
+  display: block;
+  margin: 5px;
+}
+
 /* LARGER */
 @media only screen and (min-width: 874px) {
   body {
