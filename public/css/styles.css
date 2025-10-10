@@ -320,6 +320,17 @@ input:required:valid {
   margin: 5px;
 }
 
+.classification-management {
+  width: 180px;
+}
+
+.classification-management #classificationList {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+/* EDIT ACCOUNT */
+
 /* LARGER */
 @media only screen and (min-width: 874px) {
   body {

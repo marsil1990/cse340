@@ -5,6 +5,7 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
 const classificationValidate = require("../utilities/classification-validation");
 const inventoryValidate = require("../utilities/inventory-validation");
+const Util = require("../utilities/");
 // Route to build inventory by classification view
 router.get(
   "/type/:classificationId",
@@ -15,7 +16,11 @@ router.get(
   "/detail/:inventoryId",
   utilities.handleErrors(invController.buildByInventory)
 );
-router.get("", utilities.handleErrors(invController.buildManagement));
+router.get(
+  "/",
+  utilities.checkLoginAdminOrEmployee,
+  utilities.handleErrors(invController.buildManagement)
+);
 
 router.get(
   "/new-classification",
@@ -29,11 +34,6 @@ router.post(
   utilities.handleErrors(invController.addClassification)
 );
 
-// router.post(
-//   "site-name/inv/new-inventory",
-//   utilities.handleErrors(invController.)
-// );
-
 router.get(
   "/new-inventory",
   utilities.handleErrors(invController.buildNewInventory)
@@ -45,4 +45,28 @@ router.post(
   inventoryValidate.checkNewInventoryData,
   utilities.handleErrors(invController.addInventory)
 );
+
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+);
+
+router.get(
+  "/edit/:inventory_id",
+  utilities.handleErrors(invController.getInventorybyIdToUpdate)
+);
+
+router.post(
+  "/update/",
+  inventoryValidate.newInventoryRules(),
+  inventoryValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+);
+
+router.get(
+  "/delete/:inventory_id",
+  utilities.handleErrors(invController.getInventoryByIdToDelete)
+);
+
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
 module.exports = router;

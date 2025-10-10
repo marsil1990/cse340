@@ -1,4 +1,6 @@
 const invModel = require("../models/inventory-model");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const Util = {};
 
 /* ************************
@@ -146,40 +148,6 @@ Util.buildFormLogin = async function () {
   return form;
 };
 
-// Util.buildFormRegister = async function () {
-//   let form = "";
-
-//   form += '<section class="login-container">';
-//   form +=
-//     '  <form class="login-form" action="/account/register" method="POST">';
-
-//   // Email
-//   form += '    <label for="firstName">First Name:</label>';
-//   form +=
-//     '    <input type="text" id="firstName" name="account_firstname" required>';
-
-//   // Password
-//   form += '    <label for="lastName">Last Name:</label>';
-//   form +=
-//     '    <input type="text" id="lastName" name="account_lastname" required>';
-//   form += '    <label for="email">Email:</label>';
-//   form += '    <input type="email" id="email" name="account_email" required>';
-//   form += '    <label for="password">Password:</label>';
-//   form +=
-//     '    <input type="password" id="password" name="account_password" required>';
-//   form +=
-//     '    <p class="password-hint">' +
-//     "Password must be at least 12 characters, contain one uppercase letter, one number, and one special character." +
-//     "</p>";
-//   // Botón
-//   form += '    <button type="submit">Register</button>';
-
-//   form += "  </form>";
-//   form += "</section>";
-
-//   return form;
-// };
-
 Util.buildClassificationList = async function (classification_id = null) {
   const data = await invModel.getClassifications();
   let classificationList =
@@ -206,5 +174,67 @@ Util.buildClassificationList = async function (classification_id = null) {
  **************************************** */
 Util.handleErrors = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
+
+/* ****************************************
+ * Middleware to check token validity
+ **************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  res.locals.accountData = null;
+  res.locals.loggedin = false;
+  res.locals.userName = null;
+  res.locals.type = null;
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        if (err) {
+          req.flash("Please log in");
+          res.clearCookie("jwt");
+          return res.redirect("/account/login");
+        }
+        res.locals.loggedin = true;
+        res.locals.userName = accountData.account_firstname;
+        res.locals.type = accountData.account_type;
+        next();
+      }
+    );
+  } else {
+    next();
+  }
+};
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next();
+  } else {
+    req.flash("notice", "Please log in.");
+    return res.redirect("/account/login");
+  }
+};
+
+Util.checkLoginAdminOrEmployee = (req, res, next) => {
+  let payload;
+  if (req.cookies.jwt) {
+    const token = req.cookies.jwt;
+    payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  }
+
+  if (
+    res.locals.loggedin &&
+    (payload.account_type === "Admin" || payload.account_type === "Employee")
+  ) {
+    next();
+  } else {
+    req.flash(
+      "notice",
+      "Restricted area, Only for Admin or Employee. Please log in."
+    );
+    return res.redirect("/account/login");
+  }
+};
 
 module.exports = Util;
