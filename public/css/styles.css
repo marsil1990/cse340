@@ -4,3 +4,297 @@
 *:after {
   box-sizing: border-box;
 }
+
+header,
+main,
+footer {
+  margin: 1rem;
+}
+
+.siteName a {
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+}
+
+#tools {
+  margin-top: 7px;
+}
+#tools a {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav {
+  background-color: black;
+  padding: 0;
+  margin: 0 1rem;
+  height: 2rem;
+}
+
+nav ul {
+  padding-top: 5px;
+  padding-left: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  list-style: none;
+  font-size: 15px;
+}
+
+.body-div {
+  background-color: white;
+  margin: 2rem auto;
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.main-content {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  margin-bottom: 3rem;
+}
+.main-content h2 {
+  color: rgb(4, 4, 70);
+  font-weight: bolder;
+}
+
+.main-content > img {
+  position: absolute;
+  display: block;
+  justify-self: center;
+  width: 400px;
+}
+
+.main-content div {
+  position: relative;
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.main-content div img {
+  width: 150px;
+  height: auto;
+}
+
+.main-content div ul {
+  list-style: none;
+  color: rgb(4, 4, 70);
+  font-weight: bolder;
+  margin-left: 0;
+  padding: 0;
+}
+
+.main-content div ul li {
+  font-size: 20px;
+}
+
+.upgrades {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.1rem;
+}
+
+.upgrades h2 {
+  width: 100%;
+}
+
+.upgrades .figure .images {
+  background-color: skyblue;
+  width: 160px;
+  height: 100px;
+  padding-top: 0.2rem;
+  border: 1px solid darkblue;
+}
+
+.upgrades .figcaption p {
+  text-align: center;
+  color: rgb(4, 4, 70);
+  text-decoration-line: underline;
+  font-size: 18px;
+}
+
+.upgrades .figure .images img {
+  display: block;
+  justify-self: center;
+  margin: 0;
+  width: 70px;
+  height: auto;
+}
+
+.reviews {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.reviews ul {
+  padding-left: 15px;
+}
+
+.reviews ul li {
+  padding: 15px;
+  font-size: 22px;
+}
+
+/* LARGER */
+@media only screen and (min-width: 874px) {
+  body {
+    background-image: url("/images/site/small_check.jpg");
+  }
+
+  header,
+  main,
+  footer {
+    margin: 1.5rem;
+  }
+
+  .siteName a {
+    text-decoration: none;
+    font-size: 30px;
+    color: black;
+  }
+  #tools a {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  nav {
+    background-color: black;
+    padding: 0;
+    margin: 0 1rem;
+    height: 2rem;
+  }
+
+  nav ul {
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    list-style: none;
+    font-size: 20px;
+  }
+
+  .body-div {
+    background-color: white;
+    margin: 2rem auto;
+    max-width: 1000px;
+    border: 5px solid skyblue;
+    border-radius: 5px;
+  }
+
+  .sections {
+    max-height: 1000px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: 1fr 1.2fr;
+  }
+  .main-content {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    height: 300px;
+  }
+
+  .main-content > img {
+    position: absolute;
+    display: block;
+    justify-self: center;
+    width: 550px;
+    height: auto;
+  }
+
+  .main-content div {
+    position: relative;
+    width: 200px;
+    margin-left: 80px;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .main-content div img {
+    width: 150px;
+    height: auto;
+  }
+
+  .main-content div ul {
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  .main-content div ul li {
+    font-size: 20px;
+  }
+
+  .upgrades {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .upgrades h2 {
+    width: 100%;
+  }
+
+  .upgrades .figure .images {
+    background-color: skyblue;
+    width: 200px;
+    height: 100px;
+    padding-top: 1rem;
+    border: 1px solid darkblue;
+    border-radius: 5px;
+  }
+
+  .upgrades .figcaption p {
+    text-align: center;
+    color: rgb(4, 4, 70);
+    text-decoration-line: underline;
+    margin-top: 0;
+  }
+
+  .upgrades .figure .images img {
+    display: block;
+    justify-self: center;
+    width: 70px;
+    height: auto;
+  }
+
+  .reviews {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    max-width: 400px;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .reviews ul {
+    padding-left: 15px;
+  }
+
+  .reviews ul li {
+    padding: 15px;
+    font-size: 22px;
+  }
+}
