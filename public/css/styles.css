@@ -44,9 +44,13 @@ nav ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color: white;
   list-style: none;
   font-size: 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
 }
 
 .body-div {
