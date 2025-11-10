@@ -39,6 +39,8 @@ app.use("/inv", inventoryRoute);
 // Error Route
 app.use("/error", errorRoute);
 
+// error de robots
+app.get("/robots.txt", (req, res) => res.status(204).end());
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." });
