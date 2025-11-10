@@ -77,6 +77,47 @@ Util.buildClassificationGrid = async function (data) {
   return grid;
 };
 
+Util.buildInventoryGrid = async function (data) {
+  let grid = "";
+
+  if (Object.keys(data).length > 0) {
+    const price = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(data.inv_price ?? 0);
+
+    const miles = new Intl.NumberFormat("en-US").format(data.inv_miles ?? 0);
+
+    grid += '<section class="specific-vehicle">';
+    grid +=
+      '<div class="vehicle-img">' +
+      '<img src="' +
+      data.inv_image +
+      '"' +
+      ' alt="Image of ' +
+      data.inv_make +
+      " " +
+      data.inv_model +
+      '">' +
+      "</div>" +
+      '<div class="vehicle-details">';
+
+    grid +=
+      "<h3>" + data.inv_make + " " + data.inv_model + " Details" + "</h3>";
+
+    grid += '<ul id="details">';
+    grid += "<li><strong>Price</strong>: " + price + "</li>";
+    grid +=
+      "<li><strong>Description</strong>: " + data.inv_description + "</li>";
+    grid += "<li><strong>Color</strong>: " + data.inv_color + "</li>";
+    grid += "<li><strong>Miles</strong>: " + miles + "</li>";
+    grid += "</ul></div></section>";
+  } else {
+    grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>';
+  }
+  return grid;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for
