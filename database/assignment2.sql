@@ -12,7 +12,6 @@ WHERE classification_name LIKE '%por%';
 --
 INSERT INTO public.classification
 VALUES (default, 'Convertible');
-
 --
 UPDATE public.classification
 SET classification_name = 'Hatchback'
@@ -67,7 +66,6 @@ WHERE account_id = 1;
 --SQL Reading\
 SELECT *
 FROM inventory;
-
 UPDATE inventory
 SET inv_description = REPLACE(
         inv_description,
