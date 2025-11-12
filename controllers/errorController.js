@@ -1,8 +1,6 @@
 const error500 = async (req, res, next) => {
-  try {
-    res.render("./errors", { nav }); //Incorrect direction
-  } catch (error) {
-    next(error);
-  }
+  const error = new Error("500 - Server Error");
+  error.status = 500;
+  throw error;
 };
 module.exports = { error500 };
