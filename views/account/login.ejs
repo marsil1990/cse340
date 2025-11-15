@@ -1,0 +1,24 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+
+    <% } %>
+
+        <section class="login-container">
+            <form id="loginForm" class="login-form" action="/account/login" method="POST">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="account_email" required value="<%= locals.account_email %>">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="account_password" required
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+
+                <button type="submit">LOGIN</button>
+
+                <p class="signup-text">
+                    No account? <a href="/account/register">Sign-up</a>
+                </p>
+            </form>
+        </section>

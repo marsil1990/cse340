@@ -369,6 +369,45 @@ Truck*/
   padding: 5px 0;
 }
 
+/* Flash */
+
+.notice {
+  color: red;
+  text-align: center;
+  list-style: none;
+}
+
+/*FORM*/
+.login-container {
+  display: flex;
+  justify-content: center;
+  /* max-height: 600px; */
+}
+
+.login-form {
+  background-color: #22364d; /* color azul oscuro */
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  width: 300px;
+}
+
+.login-form label {
+  display: block;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
 /* LARGER */
 @media only screen and (min-width: 874px) {
   body {
