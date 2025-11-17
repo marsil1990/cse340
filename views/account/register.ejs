@@ -1,0 +1,41 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } %>
+
+        <section class="login-register-container">
+            <form class="login-register-form" action="/account/register" method="post">
+
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="account_firstname" required
+                    value="<%= locals.account_firstname %>">
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="account_lastname" required
+                    value="<%= locals.account_lastname %>">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="account_email" required value="<%= locals.account_email %>"
+                    placeholder="Enter a valid email address">
+
+                <label for="accountPassword">Password:</label>
+                <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1
+                    special character</span>
+                <input type="password" name="account_password" id="accountPassword" required
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+
+                <button type="submit">REGISTER</button>
+            </form>
+        </section>
+
+        <%- messages() %>
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>

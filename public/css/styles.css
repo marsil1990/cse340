@@ -378,13 +378,13 @@ Truck*/
 }
 
 /*FORM*/
-.login-container {
+.login-register-container {
   display: flex;
   justify-content: center;
   /* max-height: 600px; */
 }
 
-.login-form {
+.login-register-form {
   background-color: #22364d; /* color azul oscuro */
   padding: 20px 30px;
   border-radius: 8px;
@@ -393,19 +393,37 @@ Truck*/
   width: 300px;
 }
 
-.login-form label {
+.login-register-container label {
   display: block;
   margin-top: 10px;
   text-align: left;
 }
 
-.login-form input {
+.login-register-container input {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
   margin-bottom: 10px;
   border: none;
   border-radius: 4px;
+}
+
+input:required:invalid,
+input:focus:invalid {
+  border-left: 5px solid red;
+}
+
+#loginForm input[type="password"]:required:invalid {
+  border-left: 5px solid white;
+}
+
+input:required:valid {
+  /* insert your own styles for valid form input */
+  border-left: 5px solid green;
+}
+
+#loginForm input[type="password"]:required:valid {
+  border-left: 5px solid white;
 }
 
 /* LARGER */
