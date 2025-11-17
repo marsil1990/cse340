@@ -1,5 +1,6 @@
 const express = require("express");
 const router = new express.Router();
+
 const accountController = require("../controllers/accountController");
 const utilities = require("../utilities/index");
 const regValidate = require("../utilities/account-validation");
@@ -16,6 +17,15 @@ router.post(
   regValidate.registationRules(),
   regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
+);
+
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLogData,
+  (req, res) => {
+    res.status(200).send("login process");
+  }
 );
 
 module.exports = router;

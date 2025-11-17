@@ -378,13 +378,15 @@ Truck*/
 }
 
 /*FORM*/
-.login-register-container {
+.form-container {
   display: flex;
   justify-content: center;
   /* max-height: 600px; */
 }
 
-.login-register-form {
+.login-register-form,
+.classification-form,
+.inventory-form {
   background-color: #22364d; /* color azul oscuro */
   padding: 20px 30px;
   border-radius: 8px;
@@ -393,13 +395,13 @@ Truck*/
   width: 300px;
 }
 
-.login-register-container label {
+.form-container label {
   display: block;
   margin-top: 10px;
   text-align: left;
 }
 
-.login-register-container input {
+.form-container input {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
@@ -424,6 +426,11 @@ input:required:valid {
 
 #loginForm input[type="password"]:required:valid {
   border-left: 5px solid white;
+}
+/*Management new classification and new inventory  */
+.new-classification-inventory a {
+  display: block;
+  margin: 5px;
 }
 
 /* LARGER */

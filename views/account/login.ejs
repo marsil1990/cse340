@@ -5,8 +5,8 @@
 
     <% } %>
 
-        <section class="login-register-container">
-            <form id="loginForm" class="login-register-form" action="/account/login" method="POST">
+        <section class="form-container">
+            <form id="loginForm" class="login-register-form" action="/account/login" method="post">
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="account_email" required value="<%= locals.account_email %>">
@@ -23,3 +23,12 @@
         </section>
 
         <%- messages() %>
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
