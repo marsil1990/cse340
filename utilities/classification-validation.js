@@ -35,11 +35,11 @@ validate.checkclassificationData = async (req, res, next) => {
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log(errors);
     req.flash("notice", errors.errors[0].msg);
     return res.redirect("/inv/new-classification");
+  } else {
+    next();
   }
-  next();
 };
 
 module.exports = validate;

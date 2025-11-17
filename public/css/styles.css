@@ -433,6 +433,11 @@ input:required:valid {
   margin: 5px;
 }
 
+.new-classification-inventory a {
+  margin: 5px;
+  padding: 5px 0;
+}
+
 /* LARGER */
 @media only screen and (min-width: 874px) {
   body {

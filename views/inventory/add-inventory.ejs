@@ -30,14 +30,16 @@
                         <label for="inv_image">Image Path</label>
                         <input id="inv_image" name="inv_image" required
                             pattern="^\/images\/vehicles\/.+\.(png|jpg|jpeg|webp)$"
-                            title="Ruta que comience con /images/vehicles/ y termine en .png, .jpg, .jpeg o .webp"
-                            value="<%=  locals.inv_image  %>" placeholder="/images/vehicles/archivo.png">
+                            title="The route must start with /images/vehicles/ and end in .png, .jpg, .jpeg o .webp"
+                            value="<%= ( locals.inv_image !== undefined && locals.inv_image !== '') ? locals.inv_image : '/images/vehicles/no-image.png' %>"
+                            placeholder="/images/vehicles/file.png">
 
                         <label for="inv_thumbnail">Thumbnail Path</label>
                         <input id="inv_thumbnail" name="inv_thumbnail" required
                             pattern="^\/images\/vehicles\/.+\.(png|jpg|jpeg|webp)$"
-                            title="Ruta que comience con /images/vehicles/ y termine en .png, .jpg, .jpeg o .webp"
-                            value="<%= locals.inv_thumbnail  %>" placeholder="/images/vehicles/archivo-tn.png">
+                            title="The root start with /images/vehicles/ and end in .png, .jpg, .jpeg o .webp"
+                            value="<%= (locals.inv_thumbnail !== undefined && locals.inv_thumbnail !== '') ? locals.inv_thumbnail:'/images/vehicles/no-image.png' %>"
+                            placeholder="/images/vehicles/file.png">
 
                         <label for="inv_price">Price</label>
                         <input id="inv_price" name="inv_price" required inputmode="decimal"
