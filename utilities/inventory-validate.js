@@ -132,4 +132,19 @@ validate.checkNewInventoryData = async (req, res, next) => {
   });
 };
 
+validate.checkNewInventoryData = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (errors.isEmpty()) return next();
+  errors.array().forEach((e) => req.flash("notice", e.msg));
+  return res.redirect("/inv/new-inventory");
+};
+
+validate.checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req);
+  const inv_id = req.inv_id;
+  if (errors.isEmpty()) return next();
+  errors.array().forEach((e) => req.flash("notice", e.msg));
+  return res.redirect(`/inv/edit/${inv_id}`);
+};
+
 module.exports = validate;

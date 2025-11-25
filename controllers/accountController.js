@@ -137,11 +137,19 @@ async function accountLogin(req, res) {
 
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav();
+  let payload;
+  let account_id;
+  if (req.cookies.jwt) {
+    const token = req.cookies.jwt;
+    payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    account_id = payload.account_id;
+  }
   req.flash("notice", "You're logged in");
   res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
+    account_id,
   });
 }
 
