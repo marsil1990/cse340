@@ -1,0 +1,36 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } %>
+
+        <section class="login-container">
+
+            <p>Confirm Deletion - The delete is permanent.</p>
+
+            <form class="login-form inventory-form" action="/inv/delete" method="POST" id="deleteForm">
+
+                <label for="inv_make">Make</label>
+                <input id="inv_make" name="inv_make" required minlength="3" pattern="^[A-Za-z0-9][A-Za-z0-9 \-]{2,}$"
+                    title="Mínimo 3 caracteres. Solo letras, números, espacios y guiones."
+                    value="<%= inv_make ? inv_make : '' %>" placeholder="Min of 3 Characters" disabled>
+
+                <label for="inv_model">Model</label>
+                <input id="inv_model" name="inv_model" required minlength="3" pattern="^[A-Za-z0-9][A-Za-z0-9 \-]{2,}$"
+                    title="Mínimo 3 caracteres. Solo letras, números, espacios y guiones."
+                    value="<%= inv_model ? inv_model : '' %>" placeholder="Min of 3 Characters" disabled>
+
+                <label for="inv_price">Price</label>
+                <input id="inv_price" name="inv_price" required inputmode="decimal" pattern="^\d+(?:\.\d{1,2})?$"
+                    title="Número entero o decimal con punto (ej: 12000 o 12000.99)"
+                    value="<%= inv_price ? inv_price : '' %>" placeholder="Decimal or integer" disabled>
+
+                <label for="inv_year">Year</label>
+                <input id="inv_year" name="inv_year" required type="number" min="1950" max="2099"
+                    title="Año de 4 dígitos entre 1950 y 2099 (ej: 2020)." value="<%= inv_year ? inv_year : '' %>"
+                    placeholder="4-digit year" disabled>
+
+                <button type="submit">Delete Vehicle</button>
+                <input type="hidden" name="inv_id" value="<%= inv_id ? inv_id:""%>">
+
+        </section>

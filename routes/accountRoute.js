@@ -29,8 +29,34 @@ router.post(
 router.post(
   "/login",
   regValidate.loginRules(),
-  regValidate.checkLoginData,
+  regValidate.checkLogData,
   utilities.handleErrors(accountController.accountLogin)
+);
+
+router.get("/logout", utilities.handleErrors(accountController.accountLogout));
+
+router.get(
+  "/update/:account_id",
+  utilities.handleErrors(accountController.getAccountToEdit)
+);
+
+router.post(
+  "/update/:account_id",
+  utilities.handleErrors(accountController.getAccountToEdit)
+);
+
+router.post(
+  "/update",
+  regValidate.updateRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.editAccount)
+);
+
+router.post(
+  "/changepassword",
+  regValidate.updatePasswordRules(),
+  regValidate.checkUpdatePassword,
+  utilities.handleErrors(accountController.editPasswordAccount)
 );
 
 module.exports = router;

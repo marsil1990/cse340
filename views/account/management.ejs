@@ -2,7 +2,13 @@
     <h1>
         <%= title %>
     </h1>
-
     <% } %>
 
         <%- messages() %>
+            <h2>Welcome <%= userName %>
+            </h2>
+            <a href="/account/update/<%=account_id %>">Edit Account Information</a>
+            <% if (type==="Admin" || type==="Employee" ) { %>
+                <h3><a href="/inv">Inventory Management</a></h3>
+
+                <% } %>

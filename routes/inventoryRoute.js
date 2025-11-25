@@ -15,7 +15,11 @@ router.get(
   utilities.handleErrors(invController.buildByInventoryId)
 );
 
-router.get("/", utilities.handleErrors(invController.buildManagement));
+router.get(
+  "/",
+  utilities.checkLoginAdminOrEmployee,
+  utilities.handleErrors(invController.buildManagement)
+);
 
 router.get(
   "/new-classification",
@@ -57,5 +61,12 @@ router.post(
   inventoryValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 );
+
+router.get(
+  "/delete/:inventory_id",
+  utilities.handleErrors(invController.getInventoryByIdToDelete)
+);
+
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
 
 module.exports = router;

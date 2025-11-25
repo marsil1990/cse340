@@ -240,4 +240,33 @@ invCont.updateInventory = async function (req, res, next) {
   }
 };
 
+invCont.getInventoryByIdToDelete = async (req, res) => {
+  const inv_id = req.params.inventory_id;
+  let nav = await utilities.getNav();
+  const item = await invModel.getInventoryById(inv_id);
+  const itemName = `${item.inv_make} ${item.inv_model}`;
+  res.render("inventory/delete-confirm", {
+    title: "Delete " + itemName,
+    nav,
+    errors: null,
+    inv_id: item.inv_id,
+    inv_make: item.inv_make,
+    inv_model: item.inv_model,
+    inv_year: item.inv_year,
+    inv_price: item.inv_price,
+  });
+};
+
+invCont.deleteInventory = async (req, res) => {
+  const inv_id = req.body.inv_id;
+  const del = await invModel.deleteInventoryItem(inv_id);
+  if (del) {
+    req.flash("notice", "The deletion has been successful");
+    res.redirect("/inv/");
+  } else {
+    req.flash("notice", "The deletion has failed");
+    res.status(501).redirect("/inv/");
+  }
+};
+
 module.exports = invCont;

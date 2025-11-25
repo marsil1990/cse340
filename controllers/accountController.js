@@ -153,10 +153,127 @@ async function buildManagement(req, res, next) {
   });
 }
 
+async function accountLogout(req, res, nex) {
+  try {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Error destroying session:", err);
+        return next(err);
+      }
+      res.clearCookie("sessionId");
+      res.clearCookie("jwt");
+
+      return res.status(400).redirect("/");
+    });
+  } catch (erro) {
+    console.error("Logout error:", error);
+    next(error);
+  }
+}
+
+async function getAccountToEdit(req, res, next) {
+  const account_id = parseInt(req.params.account_id);
+  let nav = await utilities.getNav();
+  const itemData = await accountModel.getAccountById(account_id);
+
+  res.render("account/edit-account", {
+    title: "Edit Acount",
+    title1: "Change Password",
+    nav,
+    errors: null,
+    account_id: itemData.account_id,
+    account_firstname: itemData.account_firstname,
+    account_lastname: itemData.account_lastname,
+    account_email: itemData.account_email,
+  });
+}
+
+async function editAccount(req, res, next) {
+  let nav = await utilities.getNav();
+  const { account_id, account_firstname, account_lastname, account_email } =
+    req.body;
+
+  const updateResult = await accountModel.updateAccount(
+    account_id,
+    account_firstname,
+    account_lastname,
+    account_email
+  );
+  if (updateResult) {
+    req.flash("notice", "Congratulation your information has been updated.");
+    return res.redirect("/account/");
+  } else {
+    req.flash("notice", "Sorry, the updated failed.");
+    res.status(501).render("account/edit-account", {
+      nav,
+      title: "Edit Acount",
+      title1: "Change Password",
+      errors: null,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+  }
+}
+
+async function editPasswordAccount(req, res) {
+  const {
+    account_id,
+    account_password,
+    account_firstname,
+    account_lastname,
+    account_email,
+  } = req.body;
+  let nav = await utilities.getNav();
+  console.log(account_id, account_password);
+  try {
+    const accountData = await accountModel.getAccountById(account_id);
+    console.log(accountData);
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
+      delete accountData.account_password;
+      req.flash(
+        "notice",
+        "Sorry, It's the same password you were using. Enter another one."
+      );
+      res.status(501).redirect("/account/");
+    } else {
+      hashedPassword = await bcrypt.hashSync(account_password, 10);
+      const regResult = await accountModel.updatePasswordAccount(
+        account_id,
+        hashedPassword
+      );
+      if (regResult) {
+        req.flash(
+          "notice",
+          "Congratulation your information has been updated."
+        );
+        return res.redirect("/account/");
+      }
+    }
+  } catch (eror) {
+    req.flash("notice", "Sorry, there was an error in the processing.");
+    res.status(501).render("account/edit-account", {
+      nav,
+      title: "Edit Acount",
+      title1: "Change Password",
+      errors: null,
+      account_id: accountData.account_id,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
+    });
+  }
+}
+
 module.exports = {
   buildLogin,
   buildRegister,
   registerAccount,
   accountLogin,
   buildManagement,
+  accountLogout,
+  getAccountToEdit,
+  editAccount,
+  editPasswordAccount,
 };

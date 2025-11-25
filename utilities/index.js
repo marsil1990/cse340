@@ -151,6 +151,10 @@ Util.handleErrors = (fn) => (req, res, next) =>
  * Middleware to check token validity
  **************************************** */
 Util.checkJWTToken = (req, res, next) => {
+  res.locals.accountData = null;
+  res.locals.loggedin = false;
+  res.locals.userName = null;
+  res.locals.type = null;
   if (req.cookies.jwt) {
     jwt.verify(
       req.cookies.jwt,
@@ -161,8 +165,9 @@ Util.checkJWTToken = (req, res, next) => {
           res.clearCookie("jwt");
           return res.redirect("/account/login");
         }
-        res.locals.accountData = accountData;
-        res.locals.loggedin = 1;
+        res.locals.loggedin = true;
+        res.locals.userName = accountData.account_firstname;
+        res.locals.type = accountData.account_type;
         next();
       }
     );
@@ -179,6 +184,27 @@ Util.checkLogin = (req, res, next) => {
     next();
   } else {
     req.flash("notice", "Please log in.");
+    return res.redirect("/account/login");
+  }
+};
+
+Util.checkLoginAdminOrEmployee = (req, res, next) => {
+  let payload;
+  if (req.cookies.jwt) {
+    const token = req.cookies.jwt;
+    payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  }
+
+  if (
+    res.locals.loggedin &&
+    (payload.account_type === "Admin" || payload.account_type === "Employee")
+  ) {
+    next();
+  } else {
+    req.flash(
+      "notice",
+      "Restricted area, Only for Admin or Employee. Please log in."
+    );
     return res.redirect("/account/login");
   }
 };
