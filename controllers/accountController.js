@@ -199,7 +199,24 @@ async function editAccount(req, res, next) {
     account_lastname,
     account_email
   );
+
   if (updateResult) {
+    const accessToken = jwt.sign(
+      updateResult,
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: 3600 * 1000,
+      }
+    );
+    if (process.env.NODE_ENV === "development") {
+      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+    } else {
+      res.cookie("jwt", accessToken, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 3600 * 1000,
+      });
+    }
     req.flash("notice", "Congratulation your information has been updated.");
     return res.redirect("/account/");
   } else {

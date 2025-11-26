@@ -16,7 +16,7 @@
                 <% } %>
 
                     <section class="form-container">
-                        <form class="login-register-form" action="/account/update" method="POST" id="updateForm">
+                        <form class="login-register-form" action="/account/update" method="POST" id="updateFormUser">
 
                             <label for="firstName">First Name:</label>
                             <input type="text" id="firstName" name="account_firstname" required
@@ -60,8 +60,8 @@
                                             special character</span>
                                     </div>
                                     <button type="submit">Change Password</button>
-                                    <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%=
-                                        locals.account_id %>"
+                                    <input type="hidden" name="account_id" <% if(locals.account_id) { %>
+                                    value="<%= locals.account_id %>"
                                         <% } %>>
                                 </form>
                             </section>
