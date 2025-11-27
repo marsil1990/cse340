@@ -4,11 +4,9 @@
     </h1>
     <% } %>
 
-        <section class="login-container">
-
-            <p>Confirm Deletion - The delete is permanent.</p>
-
-            <form class="login-form inventory-form" action="/inv/delete" method="POST" id="deleteForm">
+        <section class="form-container">
+            <p class="confirm-delete">Confirm Deletion - The delete is permanent.</p>
+            <form class="login-register-form inventory-form" action="/inv/delete" method="POST" id="deleteForm">
 
                 <label for="inv_make">Make</label>
                 <input id="inv_make" name="inv_make" required minlength="3" pattern="^[A-Za-z0-9][A-Za-z0-9 \-]{2,}$"
