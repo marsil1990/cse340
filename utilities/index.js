@@ -79,9 +79,8 @@ Util.buildClassificationGrid = async function (data) {
   return grid;
 };
 
-Util.buildInventoryGrid = async function (data) {
+Util.buildInventoryGrid = async function (data, reserved, loggedin) {
   let grid = "";
-
   if (Object.keys(data).length > 0) {
     const price = new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -113,6 +112,22 @@ Util.buildInventoryGrid = async function (data) {
       "<li><strong>Description</strong>: " + data.inv_description + "</li>";
     grid += "<li><strong>Color</strong>: " + data.inv_color + "</li>";
     grid += "<li><strong>Miles</strong>: " + miles + "</li>";
+    if (reserved) {
+      grid += "<li class='reserved'> " + "It has been reserved " + "</li>";
+    } else {
+      if (!loggedin) {
+        grid +=
+          "<li>  " +
+          '<a href="/account/login/" class="reserveBeforeLogin"> Reserve </a> </li>';
+      } else {
+        grid +=
+          '<li> <form class="reserveForm" action="/reservation/reserve" method="POST" id="reserveForm">' +
+          '<button type="submit" class="reserve">Reserve</button>' +
+          '<input type="hidden" name="inv_id" value=' +
+          data.inv_id +
+          "> </form> </li > ";
+      }
+    }
     grid += "</ul></div></section>";
   } else {
     grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>';
@@ -139,6 +154,62 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList;
 };
 
+Util.buildReservations = async function (data) {
+  let grid = "";
+  if (data.length > 0) {
+    grid = '<ul id="inv-display">';
+    data.forEach((vehicle) => {
+      grid += "<li>";
+      grid +=
+        '<a href="../../inv/detail/' +
+        vehicle.inv_id +
+        '" title="View ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        'details"><img src="' +
+        vehicle.inv_thumbnail +
+        '" alt="Image of ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        ' on CSE Motors" /></a>';
+      grid += '<div class="namePrice">';
+      grid += "<hr />";
+      grid += "<h2>";
+      grid +=
+        '<a href="../../inv/detail/' +
+        vehicle.inv_id +
+        '" title="View ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        ' details">' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        "</a>";
+      grid += "</h2>";
+      grid +=
+        "<span>$" +
+        new Intl.NumberFormat("en-US").format(vehicle.inv_price) +
+        "</span>";
+      grid += "</div>";
+      grid +=
+        '<form class="deleteForm" action="/reservation/deletereservation" method="POST" id="deleteForm">' +
+        '<button type="submit" class="deleteReservation" >Delete Reservation</button>' +
+        '<input type="hidden" name="inv_id" value=' +
+        vehicle.inv_id +
+        "> </form> ";
+      grid += "</li>";
+    });
+    grid += "</ul>";
+  } else {
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
+  }
+  return grid;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for
@@ -155,6 +226,7 @@ Util.checkJWTToken = (req, res, next) => {
   res.locals.loggedin = false;
   res.locals.userName = null;
   res.locals.type = null;
+  res.locals.account_id = null;
   if (req.cookies.jwt) {
     jwt.verify(
       req.cookies.jwt,
@@ -168,6 +240,7 @@ Util.checkJWTToken = (req, res, next) => {
         res.locals.loggedin = true;
         res.locals.userName = accountData.account_firstname;
         res.locals.type = accountData.account_type;
+        res.locals.account_id = accountData.account_id;
         next();
       }
     );

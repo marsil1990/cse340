@@ -1,7 +1,8 @@
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
-
+const resModel = require("../models/reservation-model");
 const invCont = {};
+const jwt = require("jsonwebtoken");
 
 /* ***************************
  *  Build inventory by classification view
@@ -22,8 +23,19 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByInventoryId = async function (req, res, next) {
   const inv_id = req.params.inventoryId;
   const data = await invModel.getVehicleDetails(inv_id);
-  const grid = await utilities.buildInventoryGrid(data[0]);
+  const reserved = await resModel.isReserved(inv_id);
+  let loggedin = false;
+  let payload;
+  let account_id;
+  if (req.cookies.jwt) {
+    loggedin = true;
+    const token = req.cookies.jwt;
+    payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    account_id = payload.account_id;
+  }
+  const grid = await utilities.buildInventoryGrid(data[0], reserved, loggedin);
   let nav = await utilities.getNav();
+
   const className =
     data[0].inv_year + " " + data[0].inv_make + " " + data[0].inv_model;
   res.render("./inventory/inventory", {

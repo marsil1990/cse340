@@ -256,4 +256,10 @@ WHERE inv_id = 10;
 UPDATE inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
     inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
-
+/*RESERVATION TABLE*/
+CREATE TABLE reservations(
+    account_id INT NOT NULL REFERENCES account(account_id) ON DELETE CASCADE,
+    inv_id INT NOT NULL REFERENCES inventory(inv_id) ON DELETE CASCADE,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (account_id, inv_id)
+);

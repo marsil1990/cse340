@@ -5,6 +5,7 @@
   <div id="tools">
     <% if (loggedin) { %>
       <a href="/account/">WELCOME <%= userName %></a> <a title="Click to log in" href="/account/logout">LOG OUT</a>
+      <div><a href="/reservation">My Reservations</a></div>
       <% } else { %>
         <a title="Click to log in" href="/account/login">My Account</a>
         <% } %>

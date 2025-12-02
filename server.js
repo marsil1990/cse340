@@ -17,6 +17,7 @@ const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
 const accountRoute = require("./routes/accountRoute");
 const errorRoute = require("./routes/errorRoute");
+const reservation = require("./routes/reservationRoute");
 const utilities = require("./utilities/index");
 const cookieParser = require("cookie-parser");
 
@@ -75,6 +76,9 @@ app.use("/account", accountRoute);
 
 // Error Route
 app.use("/error", errorRoute);
+
+// reservation
+app.use("/reservation", reservation);
 
 // error de robots
 app.get("/robots.txt", (req, res) => res.status(204).end());

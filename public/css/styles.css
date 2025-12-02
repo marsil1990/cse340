@@ -313,7 +313,9 @@ Truck*/
   flex-wrap: wrap;
   gap: 3rem;
   list-style: none;
+  margin-bottom: 50px;
 }
+
 #inv-display li {
   background-color: rgb(178, 225, 244);
   border: 1px solid black;
@@ -437,6 +439,47 @@ input:required:valid {
 .new-classification-inventory a {
   margin: 5px;
   padding: 5px 0;
+}
+
+/* RESERVE RESERVED RESERVED BEFORE LOGIN DELETE*/
+.reserved {
+  color: red;
+  font-weight: bold;
+}
+.reserveBeforeLogin {
+  font-size: 20px;
+  color: green;
+  text-decoration: none;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 0.2rem 1rem;
+}
+.reserve {
+  color: green;
+  border: 2px solid black;
+  border-radius: 4px;
+  height: 44px;
+  width: auto;
+}
+.deleteReservation {
+  color: red;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 4px;
+  height: 40px;
+  width: auto;
+  margin: 0 auto;
+}
+.deleteForm {
+  display: flex;
+  margin: 8px auto;
+  justify-content: center;
+}
+
+.reserve:hover,
+.deleteReservation:hover,
+.reserveBeforeLogin:hover {
+  background-color: #ddd;
 }
 
 /* LARGER */
